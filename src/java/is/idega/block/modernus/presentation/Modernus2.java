@@ -52,6 +52,10 @@ public class Modernus2 extends PresentationObjectTransitional {
 	protected void initializeComponent(FacesContext context) {
 		IWContext iwc = IWContext.getIWContext(context);
 
+		if (getPageName() == null) {
+			setPageName(getParentPage().getLocalizedTitle(iwc));
+		}
+
 		if (iwc.isInEditMode()) {
 			getChildren().add(new Text("Modernus"));
 		}
@@ -63,9 +67,6 @@ public class Modernus2 extends PresentationObjectTransitional {
 		}
 		else if (getServer() == null) {
 			getChildren().add(new Text("Server must be set"));
-		}
-		else if (getPageName() == null) {
-			getChildren().add(new Text("Page name must be set"));
 		}
 		else {
 			try {
