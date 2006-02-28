@@ -30,10 +30,16 @@ public class Modernus2 extends PresentationObjectTransitional {
 	private String iServiceID = null;
 	private String iServer = null;
 	
+	private boolean iUseHttps = false;
 	private String iProtocol = "http";
 	
 	public String getServer() {
-		return iServer;
+		if (iUseHttps) {
+			return "secure";
+		}
+		else {
+			return iServer;
+		}
 	}
 	
 	public String getPortion() {
@@ -173,6 +179,7 @@ public class Modernus2 extends PresentationObjectTransitional {
 	}
 	
 	public void setAsHttps(boolean asHttps) {
+		iUseHttps = asHttps;
 		if (asHttps) {
 			iProtocol = "https";
 		}
