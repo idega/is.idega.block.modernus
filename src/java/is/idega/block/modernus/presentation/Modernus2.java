@@ -30,6 +30,8 @@ public class Modernus2 extends PresentationObjectTransitional {
 	private String iServiceID = null;
 	private String iServer = null;
 	
+	private String iProtocol = "http";
+	
 	public String getServer() {
 		return iServer;
 	}
@@ -90,15 +92,15 @@ public class Modernus2 extends PresentationObjectTransitional {
 			buffer.append("\t").append("var portion = \"").append(getPortion()).append("\";").append("\n");
 			buffer.append("\t").append("var page = \"").append(getPageName()).append("\";").append("\n");
 			buffer.append("\t").append("if(!p_run_js) {").append("\n");
-			buffer.append("\t\t").append("document.write('<img width=\"1\" height=\"1\" src=\"http://");
+			buffer.append("\t\t").append("document.write('<img width=\"1\" height=\"1\" src=\"" + iProtocol + "://");
 			buffer.append(getServer()).append(".teljari.is/potency/potency.php?o='+service_id+';i='+portion+';p='+page+';j=1.0\" alt=\"\" border=\"0\" />');").append("\n");
 			buffer.append("\t").append("}").append("\n");
 			buffer.append("//]]>");
 			buffer.append("//--></script>\n");
-			buffer.append("<script language=\"javascript1.1\" type=\"text/javascript\" src=\"http://").append(getServer()).append(".teljari.is/potency/js/potency.js\">").append("\n");
+			buffer.append("<script language=\"javascript1.1\" type=\"text/javascript\" src=\"" + iProtocol + "://").append(getServer()).append(".teljari.is/potency/js/potency.js\">").append("\n");
 			buffer.append("</script>").append("\n");
 			buffer.append("<noscript>").append("\n");
-			buffer.append("<img width=\"1\" height=\"1\" src=\"http://").append(getServer()).append(".teljari.is/potency/potency.php?o=");
+			buffer.append("<img width=\"1\" height=\"1\" src=\"" + iProtocol + "://").append(getServer()).append(".teljari.is/potency/potency.php?o=");
 			buffer.append(getServiceID()).append(";i=").append(getPortion()).append(";p=").append(getPageName()).append("\" alt=\"\" border=\"0\" />");
 			buffer.append("</noscript>").append("\n");
 			buffer.append("<!-- Virk vefmaeling endar  -->");
@@ -168,5 +170,14 @@ public class Modernus2 extends PresentationObjectTransitional {
 	
 	public void setServiceID(String serviceID) {
 		iServiceID = serviceID;
+	}
+	
+	public void setAsHttps(boolean asHttps) {
+		if (asHttps) {
+			iProtocol = "https";
+		}
+		else {
+			iProtocol = "http";
+		}
 	}
 }
