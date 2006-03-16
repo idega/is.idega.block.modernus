@@ -1,4 +1,4 @@
-package is.idega.block.modernus.presentation;
+package is.idega.block.modernus.svarbox.presentation;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -22,12 +22,12 @@ import com.idega.util.text.TextSoap;
  * <p>
  * TODO sigtryggur Describe Type ModernusAnswerBox
  * </p>
- *  Last modified: $Date: 2006/03/16 11:16:30 $ by $Author: sigtryggur $
+ *  Last modified: $Date: 2006/03/16 17:12:36 $ by $Author: sigtryggur $
  * 
  * @author <a href="mailto:sigtryggur@idega.com">sigtryggur</a>
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.1 $
  */
-public class ModernusAnswerBox extends PresentationObjectTransitional {
+public class ModernusSvarbox extends PresentationObjectTransitional {
 	
 	private String _serviceID = null;
 	private String _name = null;
@@ -94,8 +94,7 @@ public class ModernusAnswerBox extends PresentationObjectTransitional {
 			setEmail(email.getEmailAddress());
 		}
 		
-		setTimestamp(String.valueOf(IWTimestamp.getTimestampRightNow().getTime()));
-		setPassword("lykilord");
+		setTimestamp(String.valueOf(IWTimestamp.getTimestampRightNow().getTime()/1000));
 		
 		if (iwc.isInEditMode()) {
 			getChildren().add(new Text("ModernusAnswerBox"));
@@ -192,7 +191,8 @@ public class ModernusAnswerBox extends PresentationObjectTransitional {
 		values[1] = getServiceID();
 		values[2] = getLinkImageURL();
 		values[3] = getLinkText();
-		values[4] = Boolean.valueOf((isUseHttps()));
+		values[4] = getPassword();
+		//values[5] = Boolean.valueOf((isUseHttps()));
 		return values;
 	}
 
@@ -206,7 +206,8 @@ public class ModernusAnswerBox extends PresentationObjectTransitional {
 		setServiceID((String) values[1]);
 		setLinkImageURL((String) values[2]);
 		setLinkText((String) values[3]);
-		setAsHttps(((Boolean) values[4]).booleanValue());
+		setPassword((String) values[4]);
+		//setAsHttps(((Boolean) values[5]).booleanValue());
 	}
 
 	public void setServiceID(String serviceID) {
