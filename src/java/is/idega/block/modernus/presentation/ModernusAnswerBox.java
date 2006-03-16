@@ -2,13 +2,13 @@ package is.idega.block.modernus.presentation;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.math.BigInteger;
 import java.net.URLEncoder;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.Collection;
 import java.util.Iterator;
 import javax.faces.context.FacesContext;
-import com.ibm.util.Hex;
 import com.idega.core.contact.data.Email;
 import com.idega.presentation.IWContext;
 import com.idega.presentation.PresentationObjectTransitional;
@@ -22,10 +22,10 @@ import com.idega.util.text.TextSoap;
  * <p>
  * TODO sigtryggur Describe Type ModernusAnswerBox
  * </p>
- *  Last modified: $Date: 2006/03/16 00:24:44 $ by $Author: sigtryggur $
+ *  Last modified: $Date: 2006/03/16 10:29:13 $ by $Author: sigtryggur $
  * 
  * @author <a href="mailto:sigtryggur@idega.com">sigtryggur</a>
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class ModernusAnswerBox extends PresentationObjectTransitional {
 	
@@ -257,7 +257,8 @@ public class ModernusAnswerBox extends PresentationObjectTransitional {
 	
 	private String  md5(String original) throws NoSuchAlgorithmException {
 		MessageDigest md = MessageDigest.getInstance("md5");
-        byte[] digest = md.digest(original.getBytes());
-        return Hex.toString(digest).toLowerCase();
+        md.update(original.getBytes() );
+        BigInteger hash = new BigInteger(1,md.digest());
+        return hash.toString(16);
 	}
 }
