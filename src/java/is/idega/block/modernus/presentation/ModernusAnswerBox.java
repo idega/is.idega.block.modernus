@@ -22,10 +22,10 @@ import com.idega.util.text.TextSoap;
  * <p>
  * TODO sigtryggur Describe Type ModernusAnswerBox
  * </p>
- *  Last modified: $Date: 2006/03/16 10:29:13 $ by $Author: sigtryggur $
+ *  Last modified: $Date: 2006/03/16 10:39:10 $ by $Author: sigtryggur $
  * 
  * @author <a href="mailto:sigtryggur@idega.com">sigtryggur</a>
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class ModernusAnswerBox extends PresentationObjectTransitional {
 	
@@ -85,7 +85,7 @@ public class ModernusAnswerBox extends PresentationObjectTransitional {
 		IWContext iwc = IWContext.getIWContext(context);
 		
 		User user = iwc.getCurrentUser();
-		setName(TextSoap.findAndReplace(user.getName(),' ','+'));
+		setName(user.getName());
 		
 		Collection userEmails = user.getEmails();
 		Iterator emailIt = userEmails.iterator();
