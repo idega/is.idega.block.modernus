@@ -22,10 +22,10 @@ import com.idega.util.text.TextSoap;
  * <p>
  * TODO sigtryggur Describe Type ModernusAnswerBox
  * </p>
- *  Last modified: $Date: 2006/03/16 17:12:36 $ by $Author: sigtryggur $
+ *  Last modified: $Date: 2006/03/19 09:06:57 $ by $Author: laddi $
  * 
  * @author <a href="mailto:sigtryggur@idega.com">sigtryggur</a>
- * @version $Revision: 1.1 $
+ * @version $Revision: 1.2 $
  */
 public class ModernusSvarbox extends PresentationObjectTransitional {
 	
@@ -149,13 +149,6 @@ public class ModernusSvarbox extends PresentationObjectTransitional {
 				buffer.append("Svarbox");
 			}
 			buffer.append("</a>");
-			System.out.println("name = "+getName());
-			System.out.println("email = "+getEmail());
-			System.out.println("password = "+getPassword());
-			System.out.println("timestamp = "+getTimestamp());
-			System.out.println("serviceID = "+getServiceID());
-			System.out.println("hashString = "+getHash());
-			System.out.println("link = "+buffer.toString());
 			
 			getChildren().add(new Text(buffer.toString()));
 		}
