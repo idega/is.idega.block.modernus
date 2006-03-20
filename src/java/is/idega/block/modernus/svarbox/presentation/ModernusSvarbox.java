@@ -22,10 +22,10 @@ import com.idega.util.text.TextSoap;
  * <p>
  * TODO sigtryggur Describe Type ModernusAnswerBox
  * </p>
- *  Last modified: $Date: 2006/03/19 09:06:57 $ by $Author: laddi $
+ *  Last modified: $Date: 2006/03/20 11:50:48 $ by $Author: gimmi $
  * 
  * @author <a href="mailto:sigtryggur@idega.com">sigtryggur</a>
- * @version $Revision: 1.2 $
+ * @version $Revision: 1.3 $
  */
 public class ModernusSvarbox extends PresentationObjectTransitional {
 	
@@ -38,6 +38,7 @@ public class ModernusSvarbox extends PresentationObjectTransitional {
 	private String _linkImageURL = null;
 	private String _linkText = null;
 	private boolean useHttps = false;
+	private String _imageWidth = null;
 	private String protocol = "http";
 
 	public String getServiceID() {
@@ -73,6 +74,10 @@ public class ModernusSvarbox extends PresentationObjectTransitional {
 
 	public boolean isUseHttps() {
 		return useHttps;
+	}
+	
+	public String getImageWidth() {
+		return _imageWidth;
 	}
 
 	public String getProtocol() {
@@ -138,7 +143,11 @@ public class ModernusSvarbox extends PresentationObjectTransitional {
 			buffer.append(getHash());
 			buffer.append("\" target=\"modernus_answerbox\">");
 			if (getLinkImageURL() != null && !getLinkImageURL().equals("")) {
-				buffer.append("<img alt=\"Svarbox\" src=\"");
+				buffer.append("<img alt=\"Svarbox\"");
+				if (getImageWidth() != null) {
+					buffer.append(" width=").append(getImageWidth());
+				}
+				buffer.append(" src=\"");
 				buffer.append(getLinkImageURL());
 				buffer.append("\" >");
 			}
@@ -179,12 +188,13 @@ public class ModernusSvarbox extends PresentationObjectTransitional {
 	 * @see javax.faces.component.UIComponentBase#saveState(javax.faces.context.FacesContext)
 	 */
 	public Object saveState(FacesContext ctx) {
-		Object values[] = new Object[5];
+		Object values[] = new Object[6];
 		values[0] = super.saveState(ctx);
 		values[1] = getServiceID();
 		values[2] = getLinkImageURL();
 		values[3] = getLinkText();
 		values[4] = getPassword();
+		values[5] = getImageWidth();
 		//values[5] = Boolean.valueOf((isUseHttps()));
 		return values;
 	}
@@ -200,6 +210,7 @@ public class ModernusSvarbox extends PresentationObjectTransitional {
 		setLinkImageURL((String) values[2]);
 		setLinkText((String) values[3]);
 		setPassword((String) values[4]);
+		setImageWidth((String) values[5]);
 		//setAsHttps(((Boolean) values[5]).booleanValue());
 	}
 
@@ -237,6 +248,10 @@ public class ModernusSvarbox extends PresentationObjectTransitional {
 
 	public void setProtocol(String protocol) {
 		this.protocol = protocol;
+	}
+	
+	public void setImageWidth(String imageWidth) {
+		this._imageWidth = imageWidth;
 	}
 
 	public void setAsHttps(boolean asHttps) {
