@@ -22,10 +22,10 @@ import com.idega.util.text.TextSoap;
  * <p>
  * TODO sigtryggur Describe Type ModernusAnswerBox
  * </p>
- *  Last modified: $Date: 2006/03/21 01:18:37 $ by $Author: sigtryggur $
+ *  Last modified: $Date: 2006/03/27 11:42:09 $ by $Author: sigtryggur $
  * 
  * @author <a href="mailto:sigtryggur@idega.com">sigtryggur</a>
- * @version $Revision: 1.4 $
+ * @version $Revision: 1.5 $
  */
 public class ModernusSvarbox extends PresentationObjectTransitional {
 	
@@ -114,8 +114,6 @@ public class ModernusSvarbox extends PresentationObjectTransitional {
 			getChildren().add(new Text("Password must be set"));
 		}
 		else {
-			System.out.println("name (before URL-encoding) = "+getName());
-			System.out.println("email (before URL-encoding) = "+getEmail());
 			try {
 				setName(URLEncoder.encode(getName(), "UTF-8"));
 				if (getEmail() != null) {
@@ -160,13 +158,7 @@ public class ModernusSvarbox extends PresentationObjectTransitional {
 				buffer.append("Svarbox");
 			}
 			buffer.append("</a>");
-			System.out.println("name = "+getName());
-			System.out.println("email = "+getEmail());
-			System.out.println("password = "+getPassword());
-			System.out.println("timestamp = "+getTimestamp());
-			System.out.println("serviceID = "+getServiceID());
-			System.out.println("hashString = "+getHash());
-			System.out.println("link = "+buffer.toString());
+			System.out.println("password = "+getPassword()+"    link = "+buffer.toString());
 			
 			getChildren().add(new Text(buffer.toString()));
 		}
@@ -274,7 +266,6 @@ public class ModernusSvarbox extends PresentationObjectTransitional {
 	}
 	
 	private String  md5(String original) throws NoSuchAlgorithmException {
-		System.out.println("string to be encoded = "+original);
 		MessageDigest md = MessageDigest.getInstance("md5");
         md.update(original.getBytes() );
         BigInteger hash = new BigInteger(1,md.digest());
