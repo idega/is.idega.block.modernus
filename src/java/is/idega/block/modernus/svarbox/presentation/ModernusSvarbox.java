@@ -9,6 +9,8 @@ import java.security.NoSuchAlgorithmException;
 import java.util.Collection;
 import java.util.Iterator;
 import javax.faces.context.FacesContext;
+
+import com.idega.core.accesscontrol.business.NotLoggedOnException;
 import com.idega.core.contact.data.Email;
 import com.idega.presentation.IWContext;
 import com.idega.presentation.PresentationObjectTransitional;
@@ -22,10 +24,10 @@ import com.idega.util.text.TextSoap;
  * <p>
  * TODO sigtryggur Describe Type ModernusAnswerBox
  * </p>
- *  Last modified: $Date: 2006/03/27 11:42:09 $ by $Author: sigtryggur $
+ *  Last modified: $Date: 2006/03/28 11:43:10 $ by $Author: gimmi $
  * 
  * @author <a href="mailto:sigtryggur@idega.com">sigtryggur</a>
- * @version $Revision: 1.5 $
+ * @version $Revision: 1.6 $
  */
 public class ModernusSvarbox extends PresentationObjectTransitional {
 	
@@ -89,78 +91,82 @@ public class ModernusSvarbox extends PresentationObjectTransitional {
 	protected void initializeComponent(FacesContext context) {
 		IWContext iwc = IWContext.getIWContext(context);
 		
-		User user = iwc.getCurrentUser();
-		setName(TextSoap.findAndReplace(user.getName(),' ','+'));
-		
-		Collection userEmails = user.getEmails();
-		Iterator emailIt = userEmails.iterator();
-		if (emailIt.hasNext()) {
-			Email email = (Email)emailIt.next();
-			setEmail(email.getEmailAddress());
-		}
-		
-		setTimestamp(String.valueOf(IWTimestamp.getTimestampRightNow().getTime()/1000));
-		
-		if (iwc.isInEditMode()) {
-			getChildren().add(new Text("ModernusAnswerBox"));
-		}
-		else if (getServiceID() == null) {
-			getChildren().add(new Text("Service ID must be set"));
-		}
-		else if (getName() == null) {
-			getChildren().add(new Text("Name must be set"));
-		}
-		else if (getPassword() == null) {
-			getChildren().add(new Text("Password must be set"));
-		}
-		else {
-			try {
-				setName(URLEncoder.encode(getName(), "UTF-8"));
-				if (getEmail() != null) {
-					setEmail(URLEncoder.encode(getEmail(), "UTF-8"));
-				}
+		try {
+			User user = iwc.getCurrentUser();
+			setName(TextSoap.findAndReplace(user.getName(),' ','+'));
+			
+			Collection userEmails = user.getEmails();
+			Iterator emailIt = userEmails.iterator();
+			if (emailIt.hasNext()) {
+				Email email = (Email)emailIt.next();
+				setEmail(email.getEmailAddress());
 			}
-			catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
+			
+			setTimestamp(String.valueOf(IWTimestamp.getTimestampRightNow().getTime()/1000));
+			
+			if (iwc.isInEditMode()) {
+				getChildren().add(new Text("ModernusAnswerBox"));
 			}
-			try {
-				setHash(md5(getName()+getEmail()+getTimestamp()+getPassword()));
-			} catch (NoSuchAlgorithmException e) {
-				e.printStackTrace();
+			else if (getServiceID() == null) {
+				getChildren().add(new Text("Service ID must be set"));
 			}
-			StringBuffer buffer = new StringBuffer();
-			buffer.append("<a href=\"");
-			buffer.append(getProtocol());
-			buffer.append("://svarbox.teljari.is/?c=");
-			buffer.append(getServiceID());
-			buffer.append("&n=");
-			buffer.append(getName());
-			buffer.append("&email=");
-			buffer.append(getEmail());
-			buffer.append("&_hdate=");
-			buffer.append(getTimestamp());
-			buffer.append("&_hash=");
-			buffer.append(getHash());
-			buffer.append("\" target=\"modernus_answerbox\">");
-			if (getLinkImageURL() != null && !getLinkImageURL().equals("")) {
-				buffer.append("<img alt=\"Svarbox\"");
-				if (getImageWidth() != null) {
-					buffer.append(" width=").append(getImageWidth());
-				}
-				buffer.append(" src=\"");
-				buffer.append(getLinkImageURL());
-				buffer.append("\" >");
+			else if (getName() == null) {
+				getChildren().add(new Text("Name must be set"));
 			}
-			else if (getLinkText() != null && !getLinkText().equals("")) {
-				buffer.append(getLinkText());
+			else if (getPassword() == null) {
+				getChildren().add(new Text("Password must be set"));
 			}
 			else {
-				buffer.append("Svarbox");
+				try {
+					setName(URLEncoder.encode(getName(), "UTF-8"));
+					if (getEmail() != null) {
+						setEmail(URLEncoder.encode(getEmail(), "UTF-8"));
+					}
+				}
+				catch (UnsupportedEncodingException e) {
+					e.printStackTrace();
+				}
+				try {
+					setHash(md5(getName()+getEmail()+getTimestamp()+getPassword()));
+				} catch (NoSuchAlgorithmException e) {
+					e.printStackTrace();
+				}
+				StringBuffer buffer = new StringBuffer();
+				buffer.append("<a href=\"");
+				buffer.append(getProtocol());
+				buffer.append("://svarbox.teljari.is/?c=");
+				buffer.append(getServiceID());
+				buffer.append("&n=");
+				buffer.append(getName());
+				buffer.append("&email=");
+				buffer.append(getEmail());
+				buffer.append("&_hdate=");
+				buffer.append(getTimestamp());
+				buffer.append("&_hash=");
+				buffer.append(getHash());
+				buffer.append("\" target=\"modernus_answerbox\">");
+				if (getLinkImageURL() != null && !getLinkImageURL().equals("")) {
+					buffer.append("<img alt=\"Svarbox\"");
+					if (getImageWidth() != null) {
+						buffer.append(" width=").append(getImageWidth());
+					}
+					buffer.append(" src=\"");
+					buffer.append(getLinkImageURL());
+					buffer.append("\" >");
+				}
+				else if (getLinkText() != null && !getLinkText().equals("")) {
+					buffer.append(getLinkText());
+				}
+				else {
+					buffer.append("Svarbox");
+				}
+				buffer.append("</a>");
+				System.out.println("password = "+getPassword()+"    link = "+buffer.toString());
+				
+				getChildren().add(new Text(buffer.toString()));
 			}
-			buffer.append("</a>");
-			System.out.println("password = "+getPassword()+"    link = "+buffer.toString());
-			
-			getChildren().add(new Text(buffer.toString()));
+		} catch (NotLoggedOnException n) {
+			getChildren().add(new Text("Not Logged On"));
 		}
 	}	
 	
