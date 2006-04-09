@@ -34,24 +34,24 @@ public class Modernus2 extends PresentationObjectTransitional {
 	private String iProtocol = "http";
 	
 	public String getServer() {
-		if (iUseHttps) {
+		if (this.iUseHttps) {
 			return "secure";
 		}
 		else {
-			return iServer;
+			return this.iServer;
 		}
 	}
 	
 	public String getPortion() {
-		return iPortion;
+		return this.iPortion;
 	}
 	
 	public String getPageName() {
-		return iPageName;
+		return this.iPageName;
 	}
 	
 	public String getServiceID() {
-		return iServiceID;
+		return this.iServiceID;
 	}
 	
 	/* (non-Javadoc)
@@ -98,15 +98,15 @@ public class Modernus2 extends PresentationObjectTransitional {
 			buffer.append("\t").append("var portion = \"").append(getPortion()).append("\";").append("\n");
 			buffer.append("\t").append("var page = \"").append(getPageName()).append("\";").append("\n");
 			buffer.append("\t").append("if(!p_run_js) {").append("\n");
-			buffer.append("\t\t").append("document.write('<img width=\"1\" height=\"1\" src=\"" + iProtocol + "://");
+			buffer.append("\t\t").append("document.write('<img width=\"1\" height=\"1\" src=\"" + this.iProtocol + "://");
 			buffer.append(getServer()).append(".teljari.is/potency/potency.php?o='+service_id+';i='+portion+';p='+page+';j=1.0\" alt=\"\" border=\"0\" />');").append("\n");
 			buffer.append("\t").append("}").append("\n");
 			buffer.append("//]]>");
 			buffer.append("//--></script>\n");
-			buffer.append("<script language=\"javascript1.1\" type=\"text/javascript\" src=\"" + iProtocol + "://").append(getServer()).append(".teljari.is/potency/js/potency.js\">").append("\n");
+			buffer.append("<script language=\"javascript1.1\" type=\"text/javascript\" src=\"" + this.iProtocol + "://").append(getServer()).append(".teljari.is/potency/js/potency.js\">").append("\n");
 			buffer.append("</script>").append("\n");
 			buffer.append("<noscript>").append("\n");
-			buffer.append("<img width=\"1\" height=\"1\" src=\"" + iProtocol + "://").append(getServer()).append(".teljari.is/potency/potency.php?o=");
+			buffer.append("<img width=\"1\" height=\"1\" src=\"" + this.iProtocol + "://").append(getServer()).append(".teljari.is/potency/potency.php?o=");
 			buffer.append(getServiceID()).append(";i=").append(getPortion()).append(";p=").append(getPageName()).append("\" alt=\"\" border=\"0\" />");
 			buffer.append("</noscript>").append("\n");
 			buffer.append("<!-- Virk vefmaeling endar  -->");
@@ -163,28 +163,28 @@ public class Modernus2 extends PresentationObjectTransitional {
 	}
 	
 	public void setServer(String server) {
-		iServer = server;
+		this.iServer = server;
 	}
 	
 	public void setPageName(String name) {
-		iPageName = name;	
+		this.iPageName = name;	
 	}
 	
 	public void setPortion(String portion) {
-		iPortion = portion;
+		this.iPortion = portion;
 	}
 	
 	public void setServiceID(String serviceID) {
-		iServiceID = serviceID;
+		this.iServiceID = serviceID;
 	}
 	
 	public void setAsHttps(boolean asHttps) {
-		iUseHttps = asHttps;
+		this.iUseHttps = asHttps;
 		if (asHttps) {
-			iProtocol = "https";
+			this.iProtocol = "https";
 		}
 		else {
-			iProtocol = "http";
+			this.iProtocol = "http";
 		}
 	}
 }

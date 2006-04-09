@@ -24,10 +24,10 @@ import com.idega.util.text.TextSoap;
  * <p>
  * TODO sigtryggur Describe Type ModernusAnswerBox
  * </p>
- *  Last modified: $Date: 2006/03/28 11:43:10 $ by $Author: gimmi $
+ *  Last modified: $Date: 2006/04/09 11:57:11 $ by $Author: laddi $
  * 
  * @author <a href="mailto:sigtryggur@idega.com">sigtryggur</a>
- * @version $Revision: 1.6 $
+ * @version $Revision: 1.7 $
  */
 public class ModernusSvarbox extends PresentationObjectTransitional {
 	
@@ -44,46 +44,46 @@ public class ModernusSvarbox extends PresentationObjectTransitional {
 	private String protocol = "http";
 
 	public String getServiceID() {
-		return _serviceID;
+		return this._serviceID;
 	}
 
 	public String getName() {
-		return _name;
+		return this._name;
 	}
 
 	public String getEmail() {
-		return _email;
+		return this._email;
 	}
 
 	public String getTimestamp() {
-		return _timestamp;
+		return this._timestamp;
 	}
 
 	public String getPassword() {
-		return _password;
+		return this._password;
 	}
 
 	public String getHash() {
-		return _hash;
+		return this._hash;
 	}
 	public String getLinkImageURL() {
-		return _linkImageURL;
+		return this._linkImageURL;
 	}
 
 	public String getLinkText() {
-		return _linkText;
+		return this._linkText;
 	}
 
 	public boolean isUseHttps() {
-		return useHttps;
+		return this.useHttps;
 	}
 	
 	public String getImageWidth() {
-		return _imageWidth;
+		return this._imageWidth;
 	}
 
 	public String getProtocol() {
-		return protocol;
+		return this.protocol;
 	}
 	/* (non-Javadoc)
 	 * @see com.idega.presentation.PresentationObjectTransitional#initializeComponent(javax.faces.context.FacesContext)
@@ -222,35 +222,35 @@ public class ModernusSvarbox extends PresentationObjectTransitional {
 	}
 
 	public void setServiceID(String serviceID) {
-		_serviceID = serviceID;
+		this._serviceID = serviceID;
 	}
 
 	public void setName(String name) {
-		_name = name;
+		this._name = name;
 	}
 
 	public void setEmail(String email) {
-		_email = email;
+		this._email = email;
 	}
 
 	public void setPassword(String password) {
-		_password = password;
+		this._password = password;
 	}
 
 	public void setTimestamp(String timestamp) {
-		_timestamp = timestamp;
+		this._timestamp = timestamp;
 	}
 
 	public void setHash(String hash) {
-		_hash = hash;
+		this._hash = hash;
 	}
 
 	public void setLinkImageURL(String linkImageURL) {
-		_linkImageURL = linkImageURL;
+		this._linkImageURL = linkImageURL;
 	}
 
 	public void setLinkText(String linkText) {
-		_linkText = linkText;
+		this._linkText = linkText;
 	}
 
 	public void setProtocol(String protocol) {
@@ -262,12 +262,12 @@ public class ModernusSvarbox extends PresentationObjectTransitional {
 	}
 
 	public void setAsHttps(boolean asHttps) {
-		useHttps = asHttps;
+		this.useHttps = asHttps;
 		if (asHttps) {
-			protocol = "https";
+			this.protocol = "https";
 		}
 		else {
-			protocol = "http";
+			this.protocol = "http";
 		}
 	}
 	

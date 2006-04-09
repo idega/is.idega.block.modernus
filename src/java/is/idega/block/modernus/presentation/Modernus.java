@@ -30,40 +30,41 @@ public class Modernus extends Text {
 	
 	public Modernus(String owner, String pageName, String siteName) {
 		this();
-		_owner = owner;
-		_pageName = pageName;
-		_siteName = siteName;
+		this._owner = owner;
+		this._pageName = pageName;
+		this._siteName = siteName;
 	}
 	
 	public void setPageName(String name) {
-		_pageName = name;	
+		this._pageName = name;	
 	}
 	
 	public void setOwner(String owner) {
-		_owner = owner;
+		this._owner = owner;
 	}
 	
 	public void setSiteName(String name) {
-		_siteName = name;
+		this._siteName = name;
 	}
 	
 	public String getOwner() {
-		return _owner;
+		return this._owner;
 	}
 	
 	public String getPageName() {
-		return _pageName;
+		return this._pageName;
 	}
 	
 	public String getSiteName() {
-		return _siteName;
+		return this._siteName;
 	}
 	
 	public void main(IWContext iwc) throws Exception {
-		if (_pageName == null) 
-			_pageName = getParentPage().getLocalizedTitle(iwc);
+		if (this._pageName == null) {
+			this._pageName = getParentPage().getLocalizedTitle(iwc);
+		}
 				
-		_pageName = URLEncoder.encode(_pageName);
+		this._pageName = URLEncoder.encode(this._pageName);
 
 		if (iwc.isInEditMode()) {
 			setText("<b>Modernus</b>");
@@ -81,29 +82,29 @@ public class Modernus extends Text {
 			buffer.append("//--></script>\n");
 			buffer.append("<script language=\"javascript\"><!--\n");
 			buffer.append("  eigandi = \"");
-			buffer.append(_owner);
+			buffer.append(this._owner);
 			buffer.append("\"\n");
 			buffer.append("  sida = \"");
-			buffer.append(_pageName);
+			buffer.append(this._pageName);
 			buffer.append("\"\n");
 			buffer.append("  if(javas) {\n");
 			buffer.append("    run = \"1\"\n");
 			buffer.append("  } else {\n");
 			buffer.append("    document.write(\"<img width=1 height=1 src=http://");
-			buffer.append(_siteName);
+			buffer.append(this._siteName);
 			buffer.append(".teljari.is/teljari.php?eigandi=\"+eigandi+\"&sida=\"+sida+\"&java=10>\");\n");
 			buffer.append("  }\n");
 			buffer.append("//--></script>\n");
 			buffer.append("<script language=\"javascript1.1\" src=\"http://");
-			buffer.append(_siteName);
+			buffer.append(this._siteName);
 			buffer.append(".teljari.is/kodi.js\"></script>\n");
 			buffer.append("<noscript>\n");
 			buffer.append("<img width=1 height=1 src=\"http://");
-			buffer.append(_siteName);
+			buffer.append(this._siteName);
 			buffer.append(".teljari.is/teljari.php?eigandi=");
-			buffer.append(_owner);
+			buffer.append(this._owner);
 			buffer.append("&sida=");
-			buffer.append(_pageName);
+			buffer.append(this._pageName);
 			buffer.append("\" border=0>\n");
 			buffer.append("</noscript>\n");
 			buffer.append("<!-- Virk vefmæling endar  -->");
@@ -116,9 +117,9 @@ public class Modernus extends Text {
 		Modernus obj = null;
 		try {
 			obj = (Modernus)super.clone();
-			obj._pageName = _pageName;
-			obj._owner = _owner;
-			obj._siteName = _siteName;
+			obj._pageName = this._pageName;
+			obj._owner = this._owner;
+			obj._siteName = this._siteName;
 		}
 		catch(Exception ex) {
 			ex.printStackTrace(System.err);
