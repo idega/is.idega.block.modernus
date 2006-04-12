@@ -17,17 +17,16 @@ import com.idega.presentation.PresentationObjectTransitional;
 import com.idega.presentation.text.Text;
 import com.idega.user.data.User;
 import com.idega.util.IWTimestamp;
-import com.idega.util.text.TextSoap;
 
 
 /**
  * <p>
  * TODO sigtryggur Describe Type ModernusAnswerBox
  * </p>
- *  Last modified: $Date: 2006/04/09 11:57:11 $ by $Author: laddi $
+ *  Last modified: $Date: 2006/04/12 16:21:08 $ by $Author: sigtryggur $
  * 
  * @author <a href="mailto:sigtryggur@idega.com">sigtryggur</a>
- * @version $Revision: 1.7 $
+ * @version $Revision: 1.8 $
  */
 public class ModernusSvarbox extends PresentationObjectTransitional {
 	
@@ -93,7 +92,7 @@ public class ModernusSvarbox extends PresentationObjectTransitional {
 		
 		try {
 			User user = iwc.getCurrentUser();
-			setName(TextSoap.findAndReplace(user.getName(),' ','+'));
+			setName(user.getName());
 			
 			Collection userEmails = user.getEmails();
 			Iterator emailIt = userEmails.iterator();
