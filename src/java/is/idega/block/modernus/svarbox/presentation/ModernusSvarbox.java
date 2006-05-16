@@ -23,10 +23,10 @@ import com.idega.util.IWTimestamp;
  * <p>
  * TODO sigtryggur Describe Type ModernusAnswerBox
  * </p>
- *  Last modified: $Date: 2006/05/16 11:13:00 $ by $Author: laddi $
+ *  Last modified: $Date: 2006/05/16 15:00:34 $ by $Author: laddi $
  * 
  * @author <a href="mailto:sigtryggur@idega.com">sigtryggur</a>
- * @version $Revision: 1.9 $
+ * @version $Revision: 1.10 $
  */
 public class ModernusSvarbox extends PresentationObjectTransitional {
 	
@@ -103,7 +103,7 @@ public class ModernusSvarbox extends PresentationObjectTransitional {
 			}
 		}
 		catch (NotLoggedOnException n) {
-			//Not logged on
+			setName("");
 		}
 			
 		setTimestamp(String.valueOf(IWTimestamp.getTimestampRightNow().getTime()/1000));
