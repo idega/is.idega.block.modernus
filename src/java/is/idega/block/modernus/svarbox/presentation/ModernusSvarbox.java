@@ -23,10 +23,10 @@ import com.idega.util.IWTimestamp;
  * <p>
  * TODO sigtryggur Describe Type ModernusAnswerBox
  * </p>
- *  Last modified: $Date: 2006/04/12 16:21:08 $ by $Author: sigtryggur $
+ *  Last modified: $Date: 2006/05/16 11:13:00 $ by $Author: laddi $
  * 
  * @author <a href="mailto:sigtryggur@idega.com">sigtryggur</a>
- * @version $Revision: 1.8 $
+ * @version $Revision: 1.9 $
  */
 public class ModernusSvarbox extends PresentationObjectTransitional {
 	
@@ -90,48 +90,51 @@ public class ModernusSvarbox extends PresentationObjectTransitional {
 	protected void initializeComponent(FacesContext context) {
 		IWContext iwc = IWContext.getIWContext(context);
 		
+		User user = null;
 		try {
-			User user = iwc.getCurrentUser();
+			user = iwc.getCurrentUser();
 			setName(user.getName());
-			
+
 			Collection userEmails = user.getEmails();
 			Iterator emailIt = userEmails.iterator();
 			if (emailIt.hasNext()) {
 				Email email = (Email)emailIt.next();
 				setEmail(email.getEmailAddress());
 			}
+		}
+		catch (NotLoggedOnException n) {
+			//Not logged on
+		}
 			
-			setTimestamp(String.valueOf(IWTimestamp.getTimestampRightNow().getTime()/1000));
-			
-			if (iwc.isInEditMode()) {
-				getChildren().add(new Text("ModernusAnswerBox"));
-			}
-			else if (getServiceID() == null) {
-				getChildren().add(new Text("Service ID must be set"));
-			}
-			else if (getName() == null) {
-				getChildren().add(new Text("Name must be set"));
-			}
-			else if (getPassword() == null) {
-				getChildren().add(new Text("Password must be set"));
-			}
-			else {
-				try {
-					setName(URLEncoder.encode(getName(), "UTF-8"));
-					if (getEmail() != null) {
-						setEmail(URLEncoder.encode(getEmail(), "UTF-8"));
-					}
+		setTimestamp(String.valueOf(IWTimestamp.getTimestampRightNow().getTime()/1000));
+		
+		if (iwc.isInEditMode()) {
+			getChildren().add(new Text("ModernusAnswerBox"));
+		}
+		else if (getServiceID() == null) {
+			getChildren().add(new Text("Service ID must be set"));
+		}
+		else if (getPassword() == null) {
+			getChildren().add(new Text("Password must be set"));
+		}
+		else {
+			try {
+				setName(URLEncoder.encode(getName(), "UTF-8"));
+				if (getEmail() != null) {
+					setEmail(URLEncoder.encode(getEmail(), "UTF-8"));
 				}
-				catch (UnsupportedEncodingException e) {
-					e.printStackTrace();
-				}
-				try {
-					setHash(md5(getName()+getEmail()+getTimestamp()+getPassword()));
-				} catch (NoSuchAlgorithmException e) {
-					e.printStackTrace();
-				}
-				StringBuffer buffer = new StringBuffer();
-				buffer.append("<a href=\"");
+			}
+			catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+			try {
+				setHash(md5(getName()+getEmail()+getTimestamp()+getPassword()));
+			} catch (NoSuchAlgorithmException e) {
+				e.printStackTrace();
+			}
+			StringBuffer buffer = new StringBuffer();
+			buffer.append("<a href=\"");
+			if (user != null) {
 				buffer.append(getProtocol());
 				buffer.append("://svarbox.teljari.is/?c=");
 				buffer.append(getServiceID());
@@ -144,28 +147,28 @@ public class ModernusSvarbox extends PresentationObjectTransitional {
 				buffer.append("&_hash=");
 				buffer.append(getHash());
 				buffer.append("\" target=\"modernus_answerbox\">");
-				if (getLinkImageURL() != null && !getLinkImageURL().equals("")) {
-					buffer.append("<img alt=\"Svarbox\"");
-					if (getImageWidth() != null) {
-						buffer.append(" width=").append(getImageWidth());
-					}
-					buffer.append(" src=\"");
-					buffer.append(getLinkImageURL());
-					buffer.append("\" >");
-				}
-				else if (getLinkText() != null && !getLinkText().equals("")) {
-					buffer.append(getLinkText());
-				}
-				else {
-					buffer.append("Svarbox");
-				}
-				buffer.append("</a>");
-				System.out.println("password = "+getPassword()+"    link = "+buffer.toString());
-				
-				getChildren().add(new Text(buffer.toString()));
 			}
-		} catch (NotLoggedOnException n) {
-			getChildren().add(new Text("Not Logged On"));
+			else {
+				buffer.append("\">");
+			}
+			if (getLinkImageURL() != null && !getLinkImageURL().equals("")) {
+				buffer.append("<img alt=\"Svarbox\"");
+				if (getImageWidth() != null) {
+					buffer.append(" width=").append(getImageWidth());
+				}
+				buffer.append(" src=\"");
+				buffer.append(getLinkImageURL());
+				buffer.append("\" >");
+			}
+			else if (getLinkText() != null && !getLinkText().equals("")) {
+				buffer.append(getLinkText());
+			}
+			else {
+				buffer.append("Svarbox");
+			}
+			buffer.append("</a>");
+			
+			getChildren().add(new Text(buffer.toString()));
 		}
 	}	
 	
