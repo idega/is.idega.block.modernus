@@ -7,10 +7,13 @@
   <artifactId>is.idega.block.modernus</artifactId>
   <currentVersion>3.1.0</currentVersion>
   <inceptionYear>2003</inceptionYear>
-  <shortDescription>Adds a script to a page so that modernus can count the hits. 
-  See www.modernus.is
-  </shortDescription>
+  <shortDescription>Adds a script to a page so that modernus can count the hits. See www.modernus.is</shortDescription>
   <versions>
+    <version>
+      <id>3.1.0</id>
+      <name>3.1.0</name>
+      <tag>MODERNUS_3_1_0</tag>
+    </version>
   </versions>
   <branches/>
   <developers>
@@ -46,7 +49,7 @@
       <properties>
         <eclipse.dependency>true</eclipse.dependency>
       </properties>
-	</dependency> 
+    </dependency>
   </dependencies>
   <build>
     <sourceDirectory>src/java</sourceDirectory>
