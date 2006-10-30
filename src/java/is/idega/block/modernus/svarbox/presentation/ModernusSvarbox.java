@@ -23,10 +23,10 @@ import com.idega.util.IWTimestamp;
  * <p>
  * TODO sigtryggur Describe Type ModernusAnswerBox
  * </p>
- *  Last modified: $Date: 2006/05/16 15:00:34 $ by $Author: laddi $
+ *  Last modified: $Date: 2006/10/30 12:53:01 $ by $Author: sigtryggur $
  * 
  * @author <a href="mailto:sigtryggur@idega.com">sigtryggur</a>
- * @version $Revision: 1.10 $
+ * @version $Revision: 1.11 $
  */
 public class ModernusSvarbox extends PresentationObjectTransitional {
 	
@@ -134,23 +134,18 @@ public class ModernusSvarbox extends PresentationObjectTransitional {
 			}
 			StringBuffer buffer = new StringBuffer();
 			buffer.append("<a href=\"");
-			if (user != null) {
-				buffer.append(getProtocol());
-				buffer.append("://svarbox.teljari.is/?c=");
-				buffer.append(getServiceID());
-				buffer.append("&n=");
-				buffer.append(getName());
-				buffer.append("&email=");
-				buffer.append(getEmail());
-				buffer.append("&_hdate=");
-				buffer.append(getTimestamp());
-				buffer.append("&_hash=");
-				buffer.append(getHash());
-				buffer.append("\" target=\"modernus_answerbox\">");
-			}
-			else {
-				buffer.append("\">");
-			}
+			buffer.append(getProtocol());
+			buffer.append("://svarbox.teljari.is/?c=");
+			buffer.append(getServiceID());
+			buffer.append("&n=");
+			buffer.append(getName());
+			buffer.append("&email=");
+			buffer.append(getEmail());
+			buffer.append("&_hdate=");
+			buffer.append(getTimestamp());
+			buffer.append("&_hash=");
+			buffer.append(getHash());
+			buffer.append("\" target=\"modernus_answerbox\">");
 			if (getLinkImageURL() != null && !getLinkImageURL().equals("")) {
 				buffer.append("<img alt=\"Svarbox\"");
 				if (getImageWidth() != null) {
