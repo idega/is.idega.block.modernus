@@ -5,7 +5,7 @@
   <pomVersion>3</pomVersion>
   <name>idegaWeb modernus</name>
   <artifactId>is.idega.block.modernus</artifactId>
-  <currentVersion>3.1.1</currentVersion>
+  <currentVersion>3.1.2</currentVersion>
   <inceptionYear>2003</inceptionYear>
   <shortDescription>Adds a script to a page so that modernus can count the hits. See www.modernus.is</shortDescription>
   <versions>
@@ -48,12 +48,9 @@
     <dependency>
       <groupId>bundles</groupId>
       <artifactId>com.idega.core</artifactId>
-      <version>3.1.0</version>
+      <version>3.1.39</version>
       <type>jar</type>
       <url>http://www.idega.com/</url>
-      <properties>
-        <eclipse.dependency>true</eclipse.dependency>
-      </properties>
     </dependency>
   </dependencies>
   <build>
