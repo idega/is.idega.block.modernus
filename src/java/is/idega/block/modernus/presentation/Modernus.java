@@ -73,7 +73,7 @@ public class Modernus extends Text {
 			StringBuffer buffer = new StringBuffer();
 			buffer.append("\n");
 			buffer.append("\n");
-			buffer.append("<!-- Virk vefmæling byrjar -->\n");
+			buffer.append("<!-- Virk vefmÃ¦ling byrjar -->\n");
 			buffer.append("<script language=\"javascript\"><!--\n");
 			buffer.append("  var javas=0;\n");
 			buffer.append("//--></script>\n");
@@ -107,7 +107,7 @@ public class Modernus extends Text {
 			buffer.append(this._pageName);
 			buffer.append("\" border=0>\n");
 			buffer.append("</noscript>\n");
-			buffer.append("<!-- Virk vefmæling endar  -->");
+			buffer.append("<!-- Virk vefmÃ¦ling endar  -->");
 			
 			setText(buffer.toString());
 		}
