@@ -5,15 +5,19 @@
   <parent>
   	<groupId>com.idega.block.platform</groupId>
   	<artifactId>com.idega.block.base</artifactId>
-  	<version>4.0-SNAPSHOT</version>
+  	<version>4.0.0</version>
   </parent>
   <packaging>jar</packaging>
   <groupId>com.idega.block.custom</groupId>
   <artifactId>is.idega.block.modernus</artifactId>
   <name>idegaWeb modernus</name>
-  <version>${com.idega.block.custom-is.idega.block.modernus-version}</version>
+  <version>4.0.0-SNAPSHOT</version>
   <inceptionYear>2003</inceptionYear>
   <scm>
+    <!--
+    <connection>scm:cvs:ext:${user.name}@code.idega.com:/idega/cvs:${groupId}/${artifactId}/</connection>
+    <developerConnection>scm:cvs:ext:${user.name}@code.idega.com:/idega/cvs:${groupId}/${artifactId}/</developerConnection> 
+     -->
     <connection>scm:cvs:ext:${user.name}@code.idega.com:/idega/cvs:${groupId}/${artifactId}/</connection>
     <developerConnection>scm:cvs:ext:${user.name}@code.idega.com:/idega/cvs:${groupId}/${artifactId}/</developerConnection>
   </scm>
@@ -45,6 +49,7 @@
     <dependency>
       <groupId>com.idega.block.platform</groupId>
       <artifactId>com.idega.core</artifactId>
+      <version>4.0.0</version>
     </dependency>
   </dependencies>
   
