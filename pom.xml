@@ -5,13 +5,13 @@
   <parent>
   	<groupId>com.idega.block.addon</groupId>
 	<artifactId>com.idega.block.addon</artifactId>
-	<version>4.1.1-SNAPSHOT</version>
+	<version>4.1.2</version>
   </parent>
   <packaging>jar</packaging>
   <groupId>com.idega.block.addon</groupId>
   <artifactId>is.idega.block.modernus</artifactId>
   <name>idegaWeb modernus</name>
-  <version>4.1.1-SNAPSHOT</version>
+  <version>4.1.2</version>
   <inceptionYear>2003</inceptionYear>
   <scm>
     <!--
@@ -20,6 +20,7 @@
      -->
     <connection>scm:cvs:ext:idegaweb@code.idega.com:/idega/cvs:com.idega.block.custom/is.idega.block.modernus/</connection>
     <developerConnection>scm:cvs:ext:idegaweb@code.idega.com:/idega/cvs:com.idega.block.custom/is.idega.block.modernus/</developerConnection>
+    <tag>com_idega_block_addon-4_1_2</tag>
   </scm>
 
   <developers>
